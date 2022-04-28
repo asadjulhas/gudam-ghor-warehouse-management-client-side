@@ -141,3 +141,47 @@
 .organic-food-fresh-banner .offer-banner.other-banner .banner-content .banner-btn {
   margin-top: 38px;
 }   
+
+.section-tb-padding {
+	padding-top: 80px;
+	padding-bottom: 80px;
+}
+
+.btn-style3 {
+	background-color: #91b656;
+	color: #fff;
+	font-size: 14px;
+	padding: 10px 30px;
+	font-weight: 500;
+	border-radius: 4px;
+	text-transform: uppercase;
+  text-decoration: none;
+}
+.btn-style2 {
+	background-color: #333333;
+	color: #fff;
+	font-size: 14px;
+	padding: 10px 30px;
+	font-weight: 500;
+	border-radius: 4px;
+	text-transform: uppercase;
+  text-decoration: none;
+}
+.organic-food-fresh-banner .offer-banner .banner-content h2 {
+	font-size: 20px;
+  color: #222;
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+  line-height: normal;
+}
+.organic-food-fresh-banner .offer-banner .banner-content.banner-text {
+	justify-content: space-between;
+}
+@media (max-width: 1199px) {
+.organic-food-fresh-banner .offer-banner .banner-content {
+  top: 15px;
+  bottom: 15px;
+}
+
+}

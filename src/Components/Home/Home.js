@@ -10,7 +10,7 @@ import banner3 from '../../images/banner/banner-3.png'
 
 const Home = () => {
   return (
-    <div className='homePage container mt-3'>
+    <div className='homePage container mt-5'>
       
       <Carousel>
   <Carousel.Item>
@@ -24,17 +24,14 @@ const Home = () => {
     </Carousel.Caption>
   </Carousel.Item>
   <Carousel.Item>
-    <img className="d-block w-100"
-      src={slider2}
-    />
+    <img className="d-block w-100" alt='' src={slider2}/>
 
     <Carousel.Caption>
       <h3 className='text-dark'>Delicious <br/> ingredients</h3>
     </Carousel.Caption>
   </Carousel.Item>
   <Carousel.Item>
-    <img
-      className="d-block w-100"
+    <img alt='' className="d-block w-100"
       src={slider3}
     />
 
@@ -58,27 +55,19 @@ const Home = () => {
                                         <span>Organic</span>
                                         <span>vegetables</span>
                                     </h2>
-                                    <a href="product-style-2.html" className="btn-style3">Shop now</a>
+                                    <a href="" className="btn-style3">Chceck stock</a>
                                 </div>
                             </div>
                             <div className="offer-banner other-banner">
-                                <a>
+                                <a href='' className="banner-hover">
                                     <img src={banner2} alt="offer-banner" className="img-fluid" />
                                 </a>
-                                <div className="banner-content">
-                                    <div className="banner-subtitle">
-                                        <span>Delivery in 2 hours</span>
-                                    </div>
-                                    <div className="banner-title">
-                                        <h1 className="title">20%off</h1>
-                                        <h2>
-                                            <span>Free delivery on</span>
-                                            <span>orders above $100</span>
-                                        </h2>
-                                    </div>
-                                    <div className="banner-btn">
-                                        <a href="product-style-2.html" className="btn-style2">Order now</a>
-                                    </div>
+                                <div className="banner-content banner-text">
+                                    <h2>
+                                        <span>Organic</span>
+                                        <span>Fresh meat</span>
+                                    </h2>
+                                    <a href="" className="btn-style2">Chceck stock</a>
                                 </div>
                             </div>
                             <div className="offer-banner">
@@ -90,7 +79,7 @@ const Home = () => {
                                         <span>Organic</span>
                                         <span>fresh fruit</span>
                                     </h2>
-                                    <a href="product-style-2.html" className="btn-style3">Shop now</a>
+                                    <a href="" className="btn-style3">Chceck stock</a>
                                 </div>
                             </div>
                         </div>

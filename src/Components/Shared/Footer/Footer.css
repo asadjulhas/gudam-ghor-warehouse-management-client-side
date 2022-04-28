@@ -108,12 +108,12 @@
 }
 
 .copyright_section {
-  background-color: #282828;
-  border-top: 1px solid #2c3640;
+  background-color: #F8F9FA;
+  border-top: 1px solid #333;
   padding-bottom: 15px;
 }
 .copyright_text p {
-    color: #FFFFFF;
+    color: #333;
     font-size: 14px;
     margin-top: 30px;
 }
@@ -131,14 +131,14 @@
 }
 .footer_menu ul li a {
     font-size: 13px;
-    color: #FFFFFF;
+    color: #333;
     margin-right: 15px;
     display: inline-block;
     font-weight: 700;
     padding: 20px 6px
 }
 .footer_menu ul li a:hover {
-    color: #FFFFFF;
+    color: #333;
     text-decoration: none;
 }
 .submit_btn {

@@ -70,7 +70,6 @@
   margin-top: 19px;
 }
 .form-group input {
-  background-color: #1b1d29;
   border: 1px solid #273141;
   color: #fff;
   box-shadow:  none;
@@ -80,7 +79,6 @@
   box-shadow:  none;
 }
 .message_area .form-control {
-  background-color: #1b1d29;
   color: #fff;
   border: 1px solid #273141;
   font-size: 12px ;

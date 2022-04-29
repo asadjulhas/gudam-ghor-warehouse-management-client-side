@@ -1,12 +1,30 @@
 import React from "react";
-import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Button, Spinner } from "react-bootstrap";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebaseinit";
 import "./Register.css";
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import GoogleSignin from "../../../Hooks/GoogleSignin";
 
 const Register = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [userLogin, loadingLogin, errorLogin] = useAuthState(auth);
+
+  let navigate = useNavigate();
+  let location = useLocation();
+
+  let from = location.state?.from?.pathname || "/";
+
+  if(loadingLogin) {
+    return (
+      <div className="spinner">
+       <Spinner animation="grow" variant="danger" />
+      </div>
+    )
+  }
+
+  if(userLogin) {
+    navigate(from, { replace: true });
+  }
 
   return (
     <section className="section-tb-padding">
@@ -30,16 +48,16 @@ const Register = () => {
                   Log in
                 </Link>
                 <div className="register-info">
-                  <a href="terms-conditions.html" className="terms-link">
+                <span className="terms-link">
                     <span>*</span> Terms &amp; conditions.
-                  </a>
+                  </span>
                   <p>
                     Your privacy and security are important to us. For more
-                    information on how we use your data read our
-                    <a href="privacy-policy.html">privacy policy</a>
+                    information on how we use your data read our 
+                    <span>privacy policy</span>
                   </p>
                   <div className="text-center">
-                <Button onClick={()=> signInWithGoogle()} className="btn-style2 google_signin">{loading ? 'Please Wait' : 'Signin with google'} </Button>
+                    <GoogleSignin/>
                   </div>
                 </div>
               </div>

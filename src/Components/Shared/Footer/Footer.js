@@ -35,7 +35,7 @@ const Footer = () => {
         <div className="col-md-4 col-sm-12">
          <div className="contactus_area">
            <h3>Quick Contact us</h3>
-           <form id="main-contact-form" name="contact-form" method="post" action="">
+           <form id="main-contact-form" name="contact-form">
             <div className="form-group">
               <input type="email" name="email" className="form-control" placeholder="Email Address" required="required"/>
             </div>

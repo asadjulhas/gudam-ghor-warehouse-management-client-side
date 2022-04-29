@@ -1,9 +1,20 @@
 import React from 'react';
 import './Header.css'
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import { signOut } from 'firebase/auth';
 import CustomLink from '../../../CustomLink';
+import auth from '../../../firebaseinit';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
+  const [user, loading, error] = useAuthState(auth);
+  console.log(user)
+
+  const logOut = () => {
+    signOut(auth);
+  }
+
   return (
     <div className='menu_area'>
       <Navbar bg="light" expand="lg">
@@ -13,6 +24,9 @@ const Header = () => {
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mx-auto">
         <CustomLink to='/'>Home</CustomLink>
+        { user?.uid ? '' : <CustomLink to='/login'>Login</CustomLink>}
+        { user?.uid ? <Link onClick={logOut}  to=''>Logout</Link> : <CustomLink to='/register'>Register</CustomLink>}
+        {user?.photoURL ? <img className='user_avatar' src={user?.photoURL} title={user?.displayName} alt={user?.displayName} /> : user?.displayName || user?.email}
       </Nav>
     </Navbar.Collapse>
   </Container>

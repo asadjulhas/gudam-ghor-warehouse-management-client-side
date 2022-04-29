@@ -5,3 +5,12 @@
   font-weight: 500;
   text-transform: uppercase;
 }
+.user_avatar {
+	width: 40px;
+	border-radius: 50%;
+	background: #FF5400;
+	padding: 2px;
+}
+.mx-auto.navbar-nav {
+	align-items: center;
+}

@@ -1,18 +1,126 @@
 [
   {
-      "id": 1,
-      "name": "Fresh pineapple",
-      "price": "117",
-      "supplier": "Chasi Agro",
+    "name": "Fresh graps",
+    "price": "256",
+    "supplier": "Noion Mia",
+    "description": "Fresh natural fruits with an organic test and flavor",
+    "img": "https://i.postimg.cc/G2MnLHyd/p6.jpg",
+    "stock": "158"
+},
+  {
+    "name": "Fresh apple",
+    "price": "99",
+    "supplier": "Rangabali",
+    "description": "Fresh natural fruits with an organic test and flavor",
+    "img": "https://i.postimg.cc/L6gFS46F/p10.jpg",
+    "stock": "472"
+},
+{
+  "name": "Fresh avocado",
+  "price": "167",
+  "supplier": "Sopno",
+  "description": "Fresh natural fruits with an organic test and flavor",
+  "img": "https://i.postimg.cc/Y0hKhM6g/p7.jpg",
+  "stock": "17"
+},
+{
+"name": "Fresh strawberry",
+"price": "130",
+"supplier": "Rangabali",
+"description": "Fresh natural fruits with an organic test and flavor",
+"img": "https://i.postimg.cc/Jh5WFT7y/p4.jpg",
+"stock": "289"
+},
+
+{
+      "name": "Green capsicum",
+      "price": "230",
+      "supplier": "Jal Apa",
       "description": "Fresh natural fruits with an organic test and flavor",
-      "img": "https://i.postimg.cc/zXfmh1B6/p1.jpg"
+      "img": "https://i.postimg.cc/QM330LDG/p3.jpg",
+      "stock": "680"
   },
   {
-      "id": 2,
-      "name": "Fresh coconut",
-      "price": "139",
-      "supplier": "Rangabali",
+    "name": "Purple onion",
+    "price": "64",
+    "supplier": "Rangabali",
+    "description": "Fresh natural fruits with an organic test and flavor",
+    "img": "https://i.postimg.cc/L4bFGgSV/p9.jpg",
+    "stock": "698"
+  },
+{
+  "name": "Fresh coconut",
+  "price": "139",
+  "supplier": "Rangabali",
+  "description": "Fresh natural fruits with an organic test and flavor",
+  "img": "https://i.postimg.cc/tTPWRg86/p2.jpg",
+  "stock": "294"
+  },
+  {
+    "name": "Organic cabbage",
+    "price": "135",
+    "supplier": "Abul majid",
+    "description": "Fresh natural fruits with an organic test and flavor",
+    "img": "https://i.postimg.cc/509MWwjs/p5.jpg",
+    "stock": "58"
+    },
+    {
+      "name": "Green capsicum",
+      "price": "230",
+      "supplier": "Jal Apa",
       "description": "Fresh natural fruits with an organic test and flavor",
-      "img": "https://i.postimg.cc/tTPWRg86/p2.jpg"
-  }
+      "img": "https://i.postimg.cc/QM330LDG/p3.jpg",
+      "stock": "680"
+    },
+{
+"name": "Fresh pineapple",
+"price": "117",
+"supplier": "Chasi Agro",
+"description": "Fresh natural fruits with an organic test and flavor",
+"img": "https://i.postimg.cc/zXfmh1B6/p1.jpg",
+"stock": "172"
+},
+{
+  "name": "Fresh pineapple",
+  "price": "133",
+  "supplier": "Rangabali",
+  "description": "Fresh natural fruits with an organic test and flavor",
+  "img": "https://i.postimg.cc/d3pMCp6f/p8.jpg",
+  "stock": "158"
+},
+{
+"name": "Organic cabbage",
+"price": "135",
+"supplier": "Abul majid",
+"description": "Fresh natural fruits with an organic test and flavor",
+"img": "https://i.postimg.cc/509MWwjs/p5.jpg",
+"stock": "58"
+},
+{
+  "name": "Green capsicum",
+  "price": "230",
+  "supplier": "Jal Apa",
+  "description": "Fresh natural fruits with an organic test and flavor",
+  "img": "https://i.postimg.cc/QM330LDG/p3.jpg",
+  "stock": "680"
+},
+{
+"name": "Purple onion",
+"price": "64",
+"supplier": "Rangabali",
+"description": "Fresh natural fruits with an organic test and flavor",
+"img": "https://i.postimg.cc/L4bFGgSV/p9.jpg",
+"stock": "698"
+},
+{
+"name": "Fresh coconut",
+"price": "139",
+"supplier": "Rangabali",
+"description": "Fresh natural fruits with an organic test and flavor",
+"img": "https://i.postimg.cc/tTPWRg86/p2.jpg",
+"stock": "294"
+}
+
+
+  
 ]

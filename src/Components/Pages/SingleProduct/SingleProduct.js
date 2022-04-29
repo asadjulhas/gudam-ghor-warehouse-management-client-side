@@ -1,10 +1,9 @@
 import React from "react";
 import './SingleProduct.css'
 import { Button } from "react-bootstrap";
-import p1 from "../../../images/fruites/p1.jpg";
 
 const SingleProduct = ({productDetails, product}) => {
-  const {_id, name, price, description, img, supplier} = product;
+  const {_id, name, price, description, img, supplier, stock} = product;
   return (
     <div className="col-lg-3 col-md-4 col-sm-6">
       <div className="single_product">
@@ -16,7 +15,10 @@ const SingleProduct = ({productDetails, product}) => {
           <div className="supplier">
             <b>supplier:</b> {supplier}
           </div>
-          <Button onClick={()=>productDetails(_id)} className="scock_btn">stock update</Button>
+          <div className="supplier">
+            Stock: <b>{stock}</b>
+          </div>
+          <Button onClick={()=>productDetails(_id)} className="scock_btn">stock status</Button>
         </div>
       </div>
     </div>

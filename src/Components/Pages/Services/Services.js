@@ -1,12 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import useProducts from '../../../Hooks/useProducts';
 import SingleProduct from '../SingleProduct/SingleProduct';
 import './Services.css'
 const Services = () => {
   const [products] = useProducts();
+  const nagivate = useNavigate();
   
   const productDetails = (id) => {
-    console.log(id)
+    console.log(id);
+    nagivate(`/inventory/${id}`)
   }
 
   return (
@@ -19,7 +22,7 @@ const Services = () => {
       <div className="row">
 
 {
-  products.map(product => <SingleProduct productDetails={productDetails} product={product} key={product._id} />)
+  products.slice(0, 6).map(product => <SingleProduct productDetails={productDetails} product={product} key={product._id} />)
 }
 
       </div>

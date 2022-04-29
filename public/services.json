@@ -1,0 +1,18 @@
+[
+  {
+      "id": 1,
+      "name": "Fresh pineapple",
+      "price": "117",
+      "supplier": "Chasi Agro",
+      "description": "Fresh natural fruits with an organic test and flavor",
+      "img": "https://i.postimg.cc/zXfmh1B6/p1.jpg"
+  },
+  {
+      "id": 2,
+      "name": "Fresh coconut",
+      "price": "139",
+      "supplier": "Rangabali",
+      "description": "Fresh natural fruits with an organic test and flavor",
+      "img": "https://i.postimg.cc/tTPWRg86/p2.jpg"
+  }
+]

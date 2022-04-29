@@ -1,0 +1,50 @@
+
+.single_product {
+	background: #fff;
+	text-align: center;
+	transition: all 0.3s ease-in-out 0s;
+	margin-bottom: 25px;
+}
+.single_product:hover {
+  transform: scale(1.04);
+  transition: all 0.3s ease-in-out 0s;
+}
+.product_details h3 {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #222;
+}
+.product_details {
+  border-top: 1px solid #ededed;
+  padding: 30px 15px;
+}
+.product_details p {
+  font-size: 13px;
+  font-weight: 400;
+  color: #222;
+}
+.price {
+  font-size: 14px;
+  font-weight: 600;
+  margin-right: 5px;
+  line-height: 1;
+}
+.supplier {
+  font-size: 12px;
+}
+.scock_btn {
+  background-color: #91b656;
+	color: #fff;
+	font-size: 13px;
+	padding: 9px 28px;
+	font-weight: 500;
+	border-radius: 4px;
+	text-transform: uppercase;
+	text-decoration: none;
+  border: none;
+  margin-top: 20px;
+}
+.scock_btn:hover{ 
+background-color: rgb(255, 84, 0);
+}

@@ -185,3 +185,19 @@
 }
 
 }
+.carousel-indicators {
+	display: none;
+}
+.carousel-control-next { 
+  margin-right: 2%;
+}
+.carousel-control-next, .carousel-control-prev {
+	background: red;
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	margin-top: 22%;
+}
+.carousel-control-prev {
+  margin-left: 2%;
+}

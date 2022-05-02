@@ -5,6 +5,7 @@ import auth from "../../../firebaseinit";
 import "./Login.css";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import GoogleSignin from "../../../Hooks/GoogleSignin";
+import PageTitle from "../../../Hooks/PageTitle";
 
 const Login = () => {
   const [userLogin, loadingLogin, errorLogin] = useAuthState(auth);
@@ -28,6 +29,7 @@ const Login = () => {
 
   return (
     <section className="section-tb-padding">
+    <PageTitle title='Login' />
       <div className="container">
         <div className="row">
           <div className="col">
@@ -39,7 +41,7 @@ const Login = () => {
                   <input type="text" name="email" placeholder="Email" />
                   <input type="text" name="password" placeholder="Password" />
                   <Button className="btn-style1">Sign in</Button>
-                  <Link to='' class="re-password">Request reset password?</Link>
+                  <Link to='' className="re-password">Request reset password?</Link>
                 </form>
               </div>
               <div className="register-account">

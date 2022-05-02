@@ -5,6 +5,7 @@ import auth from "../../../firebaseinit";
 import "./Register.css";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import GoogleSignin from "../../../Hooks/GoogleSignin";
+import PageTitle from "../../../Hooks/PageTitle";
 
 const Register = () => {
   const [userLogin, loadingLogin, errorLogin] = useAuthState(auth);
@@ -28,6 +29,7 @@ const Register = () => {
 
   return (
     <section className="section-tb-padding">
+    <PageTitle title='Register' />
       <div className="container">
         <div className="row">
           <div className="col">

@@ -16,7 +16,7 @@ const Products = () => {
      <section className='services_area pb-5'>
        <div className="container">
        <div className="section_title text-center pt-5 pb-5">
-         <h2>Our fruits  <br/> are fresh organic </h2>
+         <h2>Our fruits are fresh organic </h2>
        </div>
 
       <div className="row">

@@ -1,65 +1,129 @@
-import React from 'react';
-import './Inventory.css'
-import { useParams } from 'react-router-dom';
-import PageTitle from '../../../Hooks/PageTitle';
-import useSingleitem from '../../../Hooks/useSingleitem';
-import pay from '../../../images/pay-image.jpg';
-import { Button } from 'react-bootstrap';
+import React from "react";
+import "./Inventory.css";
+import { useParams } from "react-router-dom";
+import PageTitle from "../../../Hooks/PageTitle";
+import useSingleitem from "../../../Hooks/useSingleitem";
+import pay from "../../../images/pay-image.jpg";
+import { Button } from "react-bootstrap";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Inventory = () => {
-  const {id} = useParams();
+  const { id } = useParams();
   const [item] = useSingleitem(id);
+
+  
+  // Increase stock on product
+  const handleStock = () => {
+    const currentStock = item.stock - 1;
+  const data= {currentStock}
+    fetch(`http://localhost:4000/update/${id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(result => {
+      if(result.result.acknowledged) {
+        toast('One item Delivered')
+      }
+    }
+    )
+  }
+
+  // Increase Stock
+  const handleIncreaseStock = (e) => {
+    e.preventDefault();
+    const increaseStock = e.target.name.value;
+    const currentStock = parseInt(item.stock) + parseInt(increaseStock);
+    const data= {currentStock}
+    fetch(`http://localhost:4000/update/${id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(result => {
+      if(result.result.acknowledged) {
+        toast(`${increaseStock} products added in stock`)
+      }
+    }
+    )
+
+    
+  }
   return (
-    <div className='mt-5 mb-3'>
-<PageTitle title='Inventory' />
+    <div className="mt-5 mb-3">
+      <PageTitle title="Inventory" />
       <div className="container">
-      <section className="pro-page">
-                            <div className="row pro-image">
-                              
-                            <div className="col-xl-5 col-lg-6 col-md-6 col-12 larg-image">
-                            <img src={item.img} className="img-fluid" alt={item.name} />
-                            </div>
-                                <div className="col-xl-7 col-lg-6 col-md-6 col-12 pro-info">
-                                    <h4>{item.name}</h4>
-                                    <div className="pro-availabale">
-                                        <span className="available">Availability:</span>
-                                        <span className="pro-instock"> {item.stock} In stock</span>
-                                    </div>
-                                    <div className="pro-availabale">
-                                        <span className="available">Supplier:</span>
-                                        <span className="pro-instock"> {item.supplier}</span>
-                                    </div>
-                                    <div className="pro-price">
-                                        <span className="new-price">${item.price} USD</span>
-                                        <span className="old-price"><del>${parseInt(item.price*1.2)}.00</del></span>
-                                        <div className="Pro-lable">
-                                            <span className="p-discount">20%</span>
-                                        </div>
-                                    </div>
-                                    <span className="pro-details">Hurry up! only <span className="pro-number">{item.stock}</span> products left in stock!</span>
-                                    <p>{item.description}</p>
-                                   
-                                    
-                                    <div className="pro-qty">
-                                        <span className="qty">Restock:</span>
-                                        <div className="plus-minus">
-                                            <span>
-                                                <Button disabled className="minus-btn text-black">-</Button>
-                                                <input placeholder='20' type="text" name="name"/>
-                                                <Button className="plus-btn text-black">+</Button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className="pro-btn">
-                                        <Button className="btn btn-style1"><span>Delivered</span></Button>&nbsp;
-                                        <a className="btn btn-style1"><span>Buy now</span></a>
-                                    </div>
-                                    <div className="pay-img">
-                                    <img src={pay} className="img-fluid" alt="pay-image"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
+        <section className="pro-page">
+          <div className="row pro-image">
+            <div className="col-xl-5 col-lg-6 col-md-6 col-12 larg-image text-center">
+              <img src={item.img} className="img-fluid" alt={item.name} />
+            </div>
+            <div className="col-xl-7 col-lg-6 col-md-6 col-12 pro-info">
+              <h4>{item.name}</h4>
+              <div className="pro-availabale">
+                <span className="available">Availability:</span>
+                <span className="pro-instock"> {item.stock} In stock</span>
+              </div>
+              <div className="pro-availabale">
+                <span className="available">Supplier:</span>
+                <span className="pro-instock"> {item.supplier}</span>
+              </div>
+              <div className="pro-price">
+                <span className="new-price">${item.price} USD</span>
+                <span className="old-price">
+                  <del>${parseInt(item.price * 1.2)}.00</del>
+                </span>
+                <div className="Pro-lable">
+                  <span className="p-discount">20%</span>
+                </div>
+              </div>
+              <span className="pro-details">
+                Hurry up! only <span className="pro-number">{item.stock}</span>{" "}
+                products left in stock!
+              </span>
+              <p>{item.description}</p>
+
+              <div className="pro-qty">
+                <span className="qty">Restock:</span>
+                <div className="plus-minus">
+                  <span>
+                    <Button disabled className="minus-btn text-black">
+                      -
+                    </Button>
+                    <form onSubmit={handleIncreaseStock}>
+                    <input
+                      autoComplete="off"
+                      placeholder="20"
+                      type="text"
+                      name="name"
+                    />
+                    <button className="plus-btn text-black">+</button>
+                    </form>
+                  </span>
+                </div>
+              </div>
+              <div className="pro-btn">
+                <Button onClick={handleStock} className="btn btn-style1">
+                  <span>Delivered</span>
+                </Button>
+                &nbsp;
+                <a className="btn btn-style1">
+                  <span>Buy now</span>
+                </a>
+              </div>
+              <div className="pay-img">
+                <img src={pay} className="img-fluid" alt="pay-image" />
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );

@@ -27,6 +27,11 @@ const Register = () => {
     navigate(from, { replace: true });
   }
 
+  // Signin with email and pass
+  const handleRegisterForm = (e) => {
+
+  }
+
   return (
     <section className="section-tb-padding">
     <PageTitle title='Register' />
@@ -37,7 +42,7 @@ const Register = () => {
               <div className="register-box">
                 <h1>Create account</h1>
                 <p>Please register below account detail</p>
-                <form>
+                <form onSubmit={handleRegisterForm}>
                   <input type="text" name="name" placeholder="Your name" />
                   <input type="text" name="email" placeholder="Email" />
                   <input type="text" name="password" placeholder="Password" />

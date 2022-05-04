@@ -8,7 +8,6 @@ const Services = () => {
   const nagivate = useNavigate();
   
   const productDetails = (id) => {
-    console.log(id);
     nagivate(`/inventory/${id}`)
   }
 

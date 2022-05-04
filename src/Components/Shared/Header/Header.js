@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [user, loading, error] = useAuthState(auth);
-  console.log(user)
+  // console.log(user)
 
   const logOut = () => {
     signOut(auth);

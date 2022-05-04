@@ -1,0 +1,6 @@
+.del_button {
+	cursor: pointer;
+}
+.manage_inventory_page table td, .manage_inventory_page table th {
+	padding-left: 10px !important;
+}

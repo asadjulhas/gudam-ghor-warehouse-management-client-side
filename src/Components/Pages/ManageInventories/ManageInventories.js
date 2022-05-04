@@ -1,18 +1,29 @@
 import React from 'react';
+import './ManageInventories.css';
 import { Table } from 'react-bootstrap';
 import PageTitle from '../../../Hooks/PageTitle';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import useProducts from '../../../Hooks/useProducts';
 
 const ManageInventories = () => {
+  const [product] = useProducts();
+
+  // Delete Handle 
+  const handleDelete = (id) => {
+    console.log(id)
+  }
+
   return (
-    <div>
+    <div className='manage_inventory_page'>
       <PageTitle title='Manage Inventory' />
       <div className="container">
         <div className="section_title">
-          <h2 className='p-5'>Manage Inventory</h2>
+          <h2 className='p-3'>Manage Inventory</h2>
         </div>
       <Table responsive striped bordered hover size="sm">
   <thead>
-    <tr>
+     <tr>
       <th>#</th>
       <th>ID</th>
       <th>Name</th>
@@ -23,15 +34,15 @@ const ManageInventories = () => {
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>1</td>
-      <td>6565654545</td>
-      <td>Fresh pineapple</td>
-      <td>Chasi Agro</td>
-      <td>420</td>
-      <td>$150</td>
-      <td><button className='btn btn-sm btn-danger'><i class="fa-solid fa-trash-can"></i></button></td>
-    </tr>
+  { product.map((item, index) => <tr key={item._id}>
+      <td>{index+1}</td>
+      <td>{item?._id}</td>
+      <td>{item?.name}</td>
+      <td>{item?.supplier}</td>
+      <td>{item?.stock}</td>
+      <td>${item?.price  }</td>
+      <td><FontAwesomeIcon title='Delete' onClick={()=>handleDelete(item?._id)} className='text-danger del_button' icon={faTrash} /></td>
+    </tr>)  }
 
   </tbody>
 </Table>

@@ -1,0 +1,46 @@
+fnf-area{
+  text-align: center;
+}
+.fnf-area h1.fnf-title{
+  font-size: 180px;
+  line-height: 1;
+  font-weight: 700;
+}
+.fnf-area h1.fnf-title span.color-font{
+  color: #f5ab1e;
+}
+.fnf-area p{
+  margin-top: 16px;
+  font-weight: 500;
+}
+.fnf-area form{
+  margin-top: 22px;
+}
+.fnf-area form input{
+  border: 1px solid #eee;
+  border-radius: 25px;
+}
+.fnf-area a.submit{
+  padding: 9px 25px;
+  background-color: #f5ab1e;
+  border: 2px solid #f5ab1e;
+  color: #fff;
+  border-radius: 25px;
+}
+.fnf-area a.submit:hover{
+  background-color: transparent;
+  color: #000;
+}
+.fnf-area a.back-home{
+  margin-top: 30px;
+  padding: 9px 15px;
+  background-color: #f5ab1e;
+  color: #fff;
+  font-weight: 500;
+  border: 2px solid #f5ab1e;
+  border-radius: 25px;
+}
+.fnf-area a.back-home:hover{
+  background-color: transparent;
+  color: #000;
+}

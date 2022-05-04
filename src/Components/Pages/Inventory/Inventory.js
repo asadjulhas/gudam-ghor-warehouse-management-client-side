@@ -1,18 +1,20 @@
 import React from "react";
 import "./Inventory.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PageTitle from "../../../Hooks/PageTitle";
 import useSingleitem from "../../../Hooks/useSingleitem";
 import pay from "../../../images/pay-image.jpg";
 import { Button } from "react-bootstrap";
-import axios from "axios";
 import { toast } from "react-toastify";
 
 const Inventory = () => {
+  const toHome = useNavigate();
   const { id } = useParams();
   const [item] = useSingleitem(id);
 
-  
+  if(item.length === 0) {
+    toHome('/')
+  }
   // Increase stock on product
   const handleStock = () => {
     const currentStock = item.stock - 1;
@@ -95,14 +97,15 @@ const Inventory = () => {
                 <div className="plus-minus">
                   <span>
                     <Button disabled className="minus-btn text-black">
-                      -
+                      &nbsp;
                     </Button>
-                    <form onSubmit={handleIncreaseStock}>
+                    <form className="stockincreasebutton" onSubmit={handleIncreaseStock}>
                     <input
                       autoComplete="off"
                       placeholder="20"
-                      type="text"
+                      type="number"
                       name="name"
+                      required
                     />
                     <button className="plus-btn text-black">+</button>
                     </form>
@@ -113,10 +116,6 @@ const Inventory = () => {
                 <Button onClick={handleStock} className="btn btn-style1">
                   <span>Delivered</span>
                 </Button>
-                &nbsp;
-                <a className="btn btn-style1">
-                  <span>Buy now</span>
-                </a>
               </div>
               <div className="pay-img">
                 <img src={pay} className="img-fluid" alt="pay-image" />

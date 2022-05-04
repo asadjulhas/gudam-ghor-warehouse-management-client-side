@@ -223,3 +223,6 @@ pro-page .pro-image{
 .pro-page .pro-image .pro-info .pay-img{
   margin-top: 22px;
 }
+.stockincreasebutton {
+	display: flex;
+}

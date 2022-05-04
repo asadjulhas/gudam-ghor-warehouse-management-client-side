@@ -9,7 +9,7 @@ const useProducts = () => {
       setProduct(products.data);
     })
   },[])
-  return [product]
+  return [product, setProduct]
 };
 
 export default useProducts;

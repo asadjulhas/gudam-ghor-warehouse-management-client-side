@@ -7,7 +7,7 @@ fnf-area{
   font-weight: 700;
 }
 .fnf-area h1.fnf-title span.color-font{
-  color: #f5ab1e;
+  color: #FF5400;
 }
 .fnf-area p{
   margin-top: 16px;
@@ -22,8 +22,8 @@ fnf-area{
 }
 .fnf-area a.submit{
   padding: 9px 25px;
-  background-color: #f5ab1e;
-  border: 2px solid #f5ab1e;
+  background-color: #FF5400;
+  border: 2px solid #FF5400;
   color: #fff;
   border-radius: 25px;
 }
@@ -34,10 +34,10 @@ fnf-area{
 .fnf-area a.back-home{
   margin-top: 30px;
   padding: 9px 15px;
-  background-color: #f5ab1e;
+  background-color: #FF5400;
   color: #fff;
   font-weight: 500;
-  border: 2px solid #f5ab1e;
+  border: 2px solid #FF5400;
   border-radius: 25px;
 }
 .fnf-area a.back-home:hover{

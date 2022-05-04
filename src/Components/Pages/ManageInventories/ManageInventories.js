@@ -1,18 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './ManageInventories.css';
 import { Table } from 'react-bootstrap';
 import PageTitle from '../../../Hooks/PageTitle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import useProducts from '../../../Hooks/useProducts';
+import { toast } from 'react-toastify';
+import DelModal from '../../Modal/DelModal';
 
 const ManageInventories = () => {
-  const [product] = useProducts();
+  const [product, setProduct] = useProducts();
+
+  // Handle Modal
+  const [show, setShow] = useState(false);
+  const [del, setDel] = useState(false);
+  const [pid, setPid] = useState(false);
+  const [title, setTitle] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   // Delete Handle 
-  const handleDelete = (id) => {
-    console.log(id)
+  const handleDelete = (id, title) => {
+    handleShow();
+    setPid(id);
+    setTitle(title)
   }
+
+  useEffect(() => {
+    if(del) {
+      handleClose();
+      setDel(false);
+      fetch(`http://localhost:4000/delete/${pid}`, {
+      method: 'DELETE',
+    })
+    .then(res => res.json())
+    .then(result => {
+      if(result.acknowledged) {
+        toast('Product Successfully Deleted!');
+        const remainProducts = product.filter(item => item._id !== pid);
+        setProduct(remainProducts)
+      }
+    })
+    }
+  },[del])
 
   return (
     <div className='manage_inventory_page'>
@@ -25,7 +55,6 @@ const ManageInventories = () => {
   <thead>
      <tr>
       <th>#</th>
-      <th>ID</th>
       <th>Name</th>
       <th>Supplier</th>
       <th>Stock</th>
@@ -36,16 +65,16 @@ const ManageInventories = () => {
   <tbody>
   { product.map((item, index) => <tr key={item._id}>
       <td>{index+1}</td>
-      <td>{item?._id}</td>
       <td>{item?.name}</td>
       <td>{item?.supplier}</td>
       <td>{item?.stock}</td>
       <td>${item?.price  }</td>
-      <td><FontAwesomeIcon title='Delete' onClick={()=>handleDelete(item?._id)} className='text-danger del_button' icon={faTrash} /></td>
+      <td><FontAwesomeIcon title='Delete' onClick={()=>handleDelete(item?._id, item?.name)} className='text-danger del_button' icon={faTrash} /></td>
     </tr>)  }
 
   </tbody>
 </Table>
+<DelModal show={show} setDel={setDel} title={title} handleClose={handleClose} />
       </div>
     </div>
   );

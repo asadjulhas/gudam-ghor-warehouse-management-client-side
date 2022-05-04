@@ -8,6 +8,7 @@ import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 const Inventory = () => {
+  const manageInventory = useNavigate();
   const toHome = useNavigate();
   const { id } = useParams();
   const [item] = useSingleitem(id);
@@ -121,6 +122,11 @@ const Inventory = () => {
                 <img src={pay} className="img-fluid" alt="pay-image" />
               </div>
             </div>
+            <div className="manage text-center">
+
+<Button onClick={()=>manageInventory('/manage-inventories')} className='btn-style1 manage_in_btn'>Manage Inventories</Button>
+          </div>
+
           </div>
         </section>
       </div>

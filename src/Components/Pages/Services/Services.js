@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import useProducts from '../../../Hooks/useProducts';
 import SingleProduct from '../SingleProduct/SingleProduct';
@@ -6,6 +7,7 @@ import './Services.css'
 const Services = () => {
   const [products] = useProducts();
   const nagivate = useNavigate();
+  const manageInventory = useNavigate();
   
   const productDetails = (id) => {
     nagivate(`/inventory/${id}`)
@@ -24,6 +26,10 @@ const Services = () => {
   products.slice(0, 6).map(product => <SingleProduct productDetails={productDetails} product={product} key={product._id} />)
 }
 
+      </div>
+      <div className="manage text-center">
+
+<Button onClick={()=>manageInventory('/manage-inventories')} className='btn-style1 manage_in_btn'>Manage Inventories</Button>
       </div>
        </div>
     </section>

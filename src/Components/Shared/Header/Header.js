@@ -19,11 +19,12 @@ const Header = () => {
     <div className='menu_area'>
       <Navbar bg="light" expand="lg">
   <Container>
-    <Navbar.Brand href="#home">Gudam Ghor</Navbar.Brand>
+    <Navbar.Brand ><Link to='/'>Gudam Ghor</Link></Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mx-auto">
         <CustomLink to='/'>Home</CustomLink>
+        <CustomLink to='/products'>Products</CustomLink>
         { user?.uid ? '' : <CustomLink to='/login'>Login</CustomLink>}
         { user?.uid ? <Link onClick={logOut}  to=''>Logout</Link> : <CustomLink to='/register'>Register</CustomLink>}
         {user?.photoURL ? <img className='user_avatar' src={user?.photoURL} title={user?.displayName} alt={user?.displayName} /> : user?.displayName || user?.email}

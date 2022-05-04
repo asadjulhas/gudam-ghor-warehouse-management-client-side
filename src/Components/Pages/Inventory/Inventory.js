@@ -17,7 +17,7 @@ const Inventory = () => {
                             <div className="row pro-image">
                               
                             <div className="col-xl-5 col-lg-6 col-md-6 col-12 larg-image">
-                            <img src={item.img} className="img-fluid" alt="image" />
+                            <img src={item.img} className="img-fluid" alt={item.name} />
                             </div>
                                 <div className="col-xl-7 col-lg-6 col-md-6 col-12 pro-info">
                                     <h4>{item.name}</h4>
@@ -55,7 +55,7 @@ const Inventory = () => {
                                         <a className="btn btn-style1"><span>Buy now</span></a>
                                     </div>
                                     <div className="pay-img">
-                                            <img src={pay} className="img-fluid" alt="pay-image"/>
+                                    <img src={pay} className="img-fluid" alt="pay-image"/>
                                     </div>
                                 </div>
                             </div>

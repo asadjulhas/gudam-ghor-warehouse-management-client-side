@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebaseinit";
 import "./Login.css";
-import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import GoogleSignin from "../../../Hooks/GoogleSignin";
 import PageTitle from "../../../Hooks/PageTitle";
 
 const Login = () => {
+  const emailRef = useRef();
   const [errorMessage, setError] = useState('')
   const [userLogin, loadingLogin, errorLogin] = useAuthState(auth);
   const [
@@ -16,7 +17,9 @@ const Login = () => {
     loading,
     error,
   ] = useSignInWithEmailAndPassword(auth);
-
+  const [sendPasswordResetEmail, sending, errorReset] = useSendPasswordResetEmail(
+    auth
+  );
   let navigate = useNavigate();
   let location = useLocation();
 
@@ -34,6 +37,7 @@ const Login = () => {
     navigate(from, { replace: true });
   }
 
+  // Login form
   const hadleLoginForm = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -41,9 +45,19 @@ const Login = () => {
     signInWithEmailAndPassword(email, password)
     setError('');
     setError(error?.message);
-    // console.log(email, password)
   }
-
+// Reset password
+const handleResetPass = (e) => {
+  setError('');
+  e.preventDefault();
+  const email = emailRef.current.value;
+  if(!email) {
+    setError('Please provide a valid email');
+    return;
+  }
+  sendPasswordResetEmail(email);
+  setError(errorReset?.message);
+}
   return (
     <section className="section-tb-padding">
     <PageTitle title='Login' />
@@ -55,13 +69,14 @@ const Login = () => {
                 <h1>Login</h1>
                 <p>Please login below account detail</p>
                 <form onSubmit={hadleLoginForm}>
-                  <input type="email" name="email" placeholder="Email" />
+                  <input ref={emailRef} type="email" name="email" placeholder="Email" />
                   <input type="password" name="password" placeholder="Password" />
                   {
-                   errorMessage ? <p className="error_message">{errorMessage}</p> : ''
+                   errorMessage ? <p className="error_message d-block mt-3">{errorMessage}</p> : ''
                  }
                   <button className="btn-style1">Sign in</button>
-                  <Link to='' className="re-password">Request reset password?</Link>
+                  <Link onClick={handleResetPass} to='' className="re-password">
+                   {sending ? 'Sending reset password link..' : 'Request reset password?'}  </Link>
                 </form>
               </div>
               <div className="register-account">

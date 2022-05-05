@@ -105,7 +105,7 @@ const Register = () => {
                   <input required type="email" name="email" placeholder="Email" />
                   <input required type="password" name="password" placeholder="Password" />
                   <input required type="password" name="confirmpassword" placeholder="Confirm password" />
-                  <Form.Text className="text-muted mt-3 d-block">Password contain minimum eight characters, at least one uppercase letter, one lowercase letter and one number:
+                  <Form.Text className="text-muted mt-3 d-block">Password contain minimum Eight characters, at least one Uppercase letter, one Lowercase letter and one Number:
     </Form.Text>
                  {
                    errorMessage ? <p className="error_message">{errorMessage}</p> : ''

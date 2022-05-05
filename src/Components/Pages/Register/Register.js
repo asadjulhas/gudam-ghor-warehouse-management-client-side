@@ -110,7 +110,9 @@ const Register = () => {
                  {
                    errorMessage ? <p className="error_message">{errorMessage}</p> : ''
                  }
-                  <button className="btn-style1">Create account</button>
+                  <button className="btn-style1">
+                  {loading ?   <Spinner animation="border" variant="light"/>: 'Create account'}
+                    </button>
                 </form>
               </div>
               <div className="register-account">

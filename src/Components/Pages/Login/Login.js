@@ -74,9 +74,11 @@ const handleResetPass = (e) => {
                   {
                    errorMessage ? <p className="error_message d-block mt-3">{errorMessage}</p> : ''
                  }
-                  <button className="btn-style1">Sign in</button>
+                  <button className="btn-style1">
+                    {loading ? <Spinner animation="border" variant="light"/> : 'Sign in'}
+                    </button>
                   <Link onClick={handleResetPass} to='' className="re-password">
-                   {sending ? 'Sending reset password link..' : 'Request reset password?'}  </Link>
+                   {sending ? <Spinner animation="border" variant="danger"/> : 'Request reset password?'}  </Link>
                 </form>
               </div>
               <div className="register-account">

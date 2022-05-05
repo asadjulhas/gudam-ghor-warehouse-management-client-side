@@ -48,3 +48,6 @@
 .scock_btn:hover{ 
 background-color: rgb(255, 84, 0);
 }
+.single_product img {
+	height: 215px;
+}

@@ -60,7 +60,9 @@ const handleResetPass = (e) => {
 }
   return (
     <section className="section-tb-padding">
-    <PageTitle title='Login' />
+    {/* <PageTitle title='Login' /> */}
+
+    <PageTitle title='Orders'/>
       <div className="container">
         <div className="row">
           <div className="col">
@@ -69,8 +71,8 @@ const handleResetPass = (e) => {
                 <h1>Login</h1>
                 <p>Please login below account detail</p>
                 <form onSubmit={hadleLoginForm}>
-                  <input ref={emailRef} type="email" name="email" placeholder="Email" />
-                  <input type="password" name="password" placeholder="Password" />
+                  <input required ref={emailRef} type="email" name="email" placeholder="Email" />
+                  <input required type="password" name="password" placeholder="Password" />
                   {
                    errorMessage ? <p className="error_message d-block mt-3">{errorMessage}</p> : ''
                  }

@@ -22,6 +22,8 @@ const Header = () => {
       <Nav className="mx-auto">
         <CustomLink to='/'>Home</CustomLink>
         <CustomLink to='/products'>Products</CustomLink>
+        { user?.uid ? <CustomLink to='/manage-inventories'>Manage Items</CustomLink> : '' }
+        { user?.uid ? <CustomLink to='/my-items'>My items</CustomLink> : '' }
         { user?.uid ? '' : <CustomLink to='/login'>Login</CustomLink>}
         { user?.uid ? <Link onClick={logOut}  to=''>Logout</Link> : <CustomLink to='/register'>Register</CustomLink>}
         {user?.photoURL ? <img className='user_avatar' src={user?.photoURL} title={user?.displayName} alt={user?.displayName} /> : user?.displayName || user?.email}

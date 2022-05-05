@@ -2,6 +2,8 @@ import { Navigate, useLocation } from "react-router-dom";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from "./firebaseinit";
 import { Spinner } from "react-bootstrap";
+import { toast } from "react-toastify";
+import { sendEmailVerification } from "firebase/auth";
 
 function RequireAuth({ children }) {
 
@@ -14,6 +16,16 @@ function RequireAuth({ children }) {
       </div>
     )
   }
+
+  const sendVerifactionEmail = () => {
+    sendEmailVerification(auth.currentUser)
+    .then(()=>{
+      toast('Email verification sent!')
+    })
+  }
+
+
+  
   if (!user?.uid) {
     // Redirect them to the /login page, but save the current location they were
     // trying to go to when they were redirected. This allows us to send them

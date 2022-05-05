@@ -23,9 +23,18 @@ function RequireAuth({ children }) {
       toast('Email verification sent!')
     })
   }
-
-
-  
+  if(user.providerData[0]?.providerId === 'password' && !user.emailVerified) {
+    return(
+      <div className="mt-5 d-block">
+        <div className="verified_email py-5 px-4 bg-warning w-50 mx-auto rounded">
+        <h2 className="text-danger mb-3">
+          Please Verify your email
+        </h2>
+          <button onClick={sendVerifactionEmail} className="btn btn-success">Send Verification Email</button>
+      </div>
+      </div>
+    )
+  }
   if (!user?.uid) {
     // Redirect them to the /login page, but save the current location they were
     // trying to go to when they were redirected. This allows us to send them

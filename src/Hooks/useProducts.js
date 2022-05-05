@@ -8,7 +8,7 @@ const useProducts = () => {
     .then(products => {
       setProduct(products.data);
     })
-  },[])
+  },[product])
   return [product, setProduct]
 };
 

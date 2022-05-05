@@ -13,7 +13,10 @@ import axios from 'axios';
 
 const ManageInventories = () => {
   const [user] = useAuthState(auth);
-  const [product, setProduct] = useProducts();
+  const [product, setProduct] = useState([])
+
+  // Form alert
+  const [formAlert, setFormAlert] = useState('');
 
   // Handle Modal
   const [show, setShow] = useState(false);
@@ -28,6 +31,24 @@ const ManageInventories = () => {
 
   const handleCloseF = () => setFshow(false);
   const handleShowF = () => setFshow(true);
+
+  // Pagination
+  const [pageNumber, setPageNumber] = useState(0);
+  const [pageAmmount, setPageAmmount] = useState(15);
+  const [pcount, setPcount] = useState('');
+  useEffect(() => {
+    axios.get('http://localhost:4000/productcount')
+    .then(res => {
+      setPcount(Math.ceil(res.data.count/pageAmmount))
+    })
+  },[]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:4000/pagination?pageNUmber=${pageNumber}&pageAmmount=${pageAmmount}`)
+    .then(products => {
+      setProduct(products.data)
+  },[pageNumber])
+  })
 
   // Delete Handle 
   const handleDelete = (id, title) => {
@@ -58,6 +79,12 @@ const ManageInventories = () => {
   const handleAddproduct = (e) => {
     e.preventDefault();
     const name = e.target.pname.value;
+    if(!name) {
+      setFormAlert('Please added product name')
+      return;
+    } else {
+      setFormAlert('')
+    }
     const supplier = e.target.supplier.value;
     const stock = e.target.stock.value;
     const img = e.target.image.value;
@@ -112,6 +139,19 @@ const ManageInventories = () => {
   </tbody>
 </Table>
 <DelModal show={show} setDel={setDel} title={title} handleClose={handleClose} />
+
+<div className="pagination_area text-center">
+<nav aria-label="Page navigation example">
+  <ul className="pagination">
+    {
+      [...Array(pcount).keys()].map(number => 
+        <li key={number} onClick={()=>setPageNumber(number)} className={
+          pageNumber === number ? 'page-item active' : 'page-item'
+        }><span className="page-link">{number+1}</span></li>)
+    }
+  </ul>
+</nav>
+</div>
       </div>
       
       <Modal
@@ -128,33 +168,34 @@ const ManageInventories = () => {
         <Form onSubmit={handleAddproduct}>
 
   <Form.Group className="mb-3" controlId="formBasicPassword">
-    <Form.Control name='pname' type="text" placeholder="Product Name" />
+    <Form.Control required name='pname' type="text" placeholder="Product Name" />
   </Form.Group>
 
   <Form.Group className="mb-3" controlId="formBasicPassword">
-    <Form.Control name='supplier' type="text" placeholder="Supplier Name" />
+    <Form.Control required name='supplier' type="text" placeholder="Supplier Name" />
   </Form.Group>
 
   <Form.Group className="mb-3" controlId="formBasicPassword">
-    <Form.Control name='stock' type="number" placeholder="In Stock" />
+    <Form.Control required name='stock' type="number" placeholder="In Stock" />
   </Form.Group>
 
   <Form.Group className="mb-3" controlId="formBasicPassword">
-    <Form.Control name='price' type="number" placeholder="Price" />
+    <Form.Control required name='price' type="number" placeholder="Price" />
   </Form.Group>
 
   <Form.Group className="mb-3" controlId="formBasicPassword">
-    <Form.Control name='image' type="text" placeholder="Product image url" />
+    <Form.Control required name='image' type="text" placeholder="Product image url" />
   </Form.Group>
 
   <Form.Group className="mb-3" controlId="formBasicPassword">
-    <Form.Control name='description'
+    <Form.Control required name='description'
       as="textarea"
       placeholder="Product description"
       style={{ height: '100px' }}
     />
   </Form.Group>
   
+  <p className='text-danger'>{formAlert}</p>
   <Button className='btn-style2' variant="primary" type="submit">
     Add product
   </Button>
@@ -167,6 +208,7 @@ const ManageInventories = () => {
         </Modal.Footer>
       </Modal>
 
+     
     </div>
   );
 };

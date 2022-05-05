@@ -1,14 +1,24 @@
-import React from "react";
-import { Button, Spinner } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Form, Spinner } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebaseinit";
 import "./Register.css";
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useAuthState, useCreateUserWithEmailAndPassword, useSendEmailVerification, useUpdateProfile } from 'react-firebase-hooks/auth';
 import GoogleSignin from "../../../Hooks/GoogleSignin";
 import PageTitle from "../../../Hooks/PageTitle";
+import { async } from "@firebase/util";
 
 const Register = () => {
+  const [errorMessage, setError] = useState('')
   const [userLogin, loadingLogin, errorLogin] = useAuthState(auth);
+  const [
+    createUserWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification:  true});
+
+  const [updateProfile, updating, error2] = useUpdateProfile(auth);
 
   let navigate = useNavigate();
   let location = useLocation();
@@ -28,10 +38,58 @@ const Register = () => {
   }
 
   // Signin with email and pass
-  const handleRegisterForm = (e) => {
+  const handleRegisterForm = async (e) => {
+   
+    e.preventDefault();
+    setError('');
+    setError(error?.message);
+    const userName = e.target.name.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const passwordConfirm = e.target.confirmpassword.value;
+
+    if(!userName) {
+      setError('Please provide a name');
+      return;
+    }
+
+    if(!email) {
+      setError('Please provide a email');
+      return;
+    }
+
+    if(!password) {
+      setError('Please provide a password');
+      return;
+    }
+
+    const validateEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if(!validateEmail.test(email)) {
+      setError('Please provide a valid email');
+      return;
+    }
+
+    const validatePassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+
+    if(!validatePassword.test(password)) {
+      setError('Password contain minimum eight characters, at least one uppercase letter, one lowercase letter and one number:');
+      return;
+    }
+
+    if(password !== passwordConfirm) {
+      setError('Password not match')
+      return;
+    }
+    await createUserWithEmailAndPassword(email, password);
+    await updateProfile({ displayName: userName });
+    if(user) {
+      setError('Register Successfully, Login now.');
+    } else (
+      setError(error?.message)
+    )
 
   }
-
   return (
     <section className="section-tb-padding">
     <PageTitle title='Register' />
@@ -43,10 +101,16 @@ const Register = () => {
                 <h1>Create account</h1>
                 <p>Please register below account detail</p>
                 <form onSubmit={handleRegisterForm}>
-                  <input type="text" name="name" placeholder="Your name" />
-                  <input type="text" name="email" placeholder="Email" />
-                  <input type="text" name="password" placeholder="Password" />
-                  <Button className="btn-style1">Create account</Button>
+                  <input required type="text" name="name" placeholder="Your name" />
+                  <input required type="email" name="email" placeholder="Email" />
+                  <input required type="password" name="password" placeholder="Password" />
+                  <input required type="password" name="confirmpassword" placeholder="Confirm password" />
+                  <Form.Text className="text-muted mt-3 d-block">Password contain minimum eight characters, at least one uppercase letter, one lowercase letter and one number:
+    </Form.Text>
+                 {
+                   errorMessage ? <p className="error_message">{errorMessage}</p> : ''
+                 }
+                  <button className="btn-style1">Create account</button>
                 </form>
               </div>
               <div className="register-account">

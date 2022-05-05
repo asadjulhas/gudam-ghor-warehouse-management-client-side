@@ -34,7 +34,7 @@ const ManageInventories = () => {
 
   // Pagination
   const [pageNumber, setPageNumber] = useState(0);
-  const [pageAmmount, setPageAmmount] = useState(15);
+  const [pageAmmount, setPageAmmount] = useState(12);
   const [pcount, setPcount] = useState('');
   useEffect(() => {
     axios.get('http://localhost:4000/productcount')

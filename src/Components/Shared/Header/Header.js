@@ -14,7 +14,7 @@ const Header = () => {
   const logOut = () => {
     signOut(auth);
   }
-
+console.log(user)
   return (
     <div className='menu_area'>
       <Navbar bg="light" expand="lg">

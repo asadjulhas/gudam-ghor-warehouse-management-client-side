@@ -116,7 +116,7 @@
 }
 .register-area .register-box button.btn-style1 {
 	width: 100%;
-	margin-top: 30px;
+	margin-top: 20px;
 	text-align: center;
 }
 .google_signin {
@@ -134,4 +134,9 @@
 	align-items: center;
 	justify-content: center;
 	text-align: center;
+}
+.error_message {
+	margin: 0;
+	font-size: 14px;
+	color: #ff0000;
 }

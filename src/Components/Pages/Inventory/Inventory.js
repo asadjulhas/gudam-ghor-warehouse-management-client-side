@@ -56,8 +56,11 @@ const Inventory = () => {
       }
     }
     )
-
     
+  }
+  // Go inventory page
+  const goInventory = () => {
+    manageInventory('/manage-inventories')
   }
   return (
     <div className="mt-5 mb-3">
@@ -124,7 +127,7 @@ const Inventory = () => {
             </div>
             <div className="manage text-center">
 
-<Button onClick={()=>manageInventory('/manage-inventories')} className='btn-style1 manage_in_btn'>Manage Inventories</Button>
+<Button onClick={()=>goInventory()} className='btn-style1 manage_in_btn'>Manage Inventories</Button>
           </div>
 
           </div>

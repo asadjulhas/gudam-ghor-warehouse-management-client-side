@@ -22,7 +22,7 @@ const MyItems = () => {
   const [user] = useAuthState(auth);
   const [items, setItems] = useState([])
   useEffect(() => {
-    axios.get(`http://localhost:4000/my-item?email=${user?.email}`)
+    axios.get(`https://stormy-gorge-17032.herokuapp.com/my-item?email=${user?.email}`)
   .then(item => {
     setItems(item.data)
   })
@@ -42,7 +42,7 @@ const MyItems = () => {
     if(del) {
       handleClose();
       setDel(false);
-      fetch(`http://localhost:4000/delete/${pid}`, {
+      fetch(`https://stormy-gorge-17032.herokuapp.com/delete/${pid}`, {
       method: 'DELETE',
     })
     .then(res => res.json())

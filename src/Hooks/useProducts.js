@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 const useProducts = () => {
   const [product, setProduct] = useState([]);
   useEffect(() => {
-      axios.get('http://localhost:4000/product')
+      axios.get('https://stormy-gorge-17032.herokuapp.com/product')
     .then(products => {
       setProduct(products.data);
     })

@@ -20,7 +20,7 @@ const Inventory = () => {
   const handleStock = () => {
     const currentStock = item.stock - 1;
   const data= {currentStock}
-    fetch(`http://localhost:4000/update/${id}`, {
+    fetch(`https://stormy-gorge-17032.herokuapp.com/update/${id}`, {
       method: 'PUT',
       headers: {
         'content-type': "application/json"
@@ -42,7 +42,7 @@ const Inventory = () => {
     const increaseStock = e.target.name.value;
     const currentStock = parseInt(item.stock) + parseInt(increaseStock);
     const data= {currentStock}
-    fetch(`http://localhost:4000/update/${id}`, {
+    fetch(`https://stormy-gorge-17032.herokuapp.com/update/${id}`, {
       method: 'PUT',
       headers: {
         'content-type': "application/json"

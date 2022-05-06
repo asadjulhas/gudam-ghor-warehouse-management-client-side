@@ -37,14 +37,14 @@ const ManageInventories = () => {
   const [pageAmmount, setPageAmmount] = useState(12);
   const [pcount, setPcount] = useState('');
   useEffect(() => {
-    axios.get('http://localhost:4000/productcount')
+    axios.get('https://stormy-gorge-17032.herokuapp.com/productcount')
     .then(res => {
       setPcount(Math.ceil(res.data.count/pageAmmount))
     })
   },[]);
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/pagination?pageNUmber=${pageNumber}&pageAmmount=${pageAmmount}`)
+    axios.get(`https://stormy-gorge-17032.herokuapp.com/pagination?pageNUmber=${pageNumber}&pageAmmount=${pageAmmount}`)
     .then(products => {
       setProduct(products.data)
   },[pageNumber])
@@ -61,7 +61,7 @@ const ManageInventories = () => {
     if(del) {
       handleClose();
       setDel(false);
-      fetch(`http://localhost:4000/delete/${pid}`, {
+      fetch(`https://stormy-gorge-17032.herokuapp.com/delete/${pid}`, {
       method: 'DELETE',
     })
     .then(res => res.json())
@@ -93,7 +93,7 @@ const ManageInventories = () => {
     const email = user?.email;
     const data = {name, supplier, stock, img, price, description, email}
 
-    axios.post('http://localhost:4000/add-product', data)
+    axios.post('https://stormy-gorge-17032.herokuapp.com/add-product', data)
     .then(res => {
       if(res.data.acknowledged) {
         toast(`Products successfully added.`)

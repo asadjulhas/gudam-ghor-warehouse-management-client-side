@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import NotFound from "./Components/Pages/NotFound/NotFound";
 import ManageInventories from "./Components/Pages/ManageInventories/ManageInventories";
 import MyItems from "./Components/Pages/MyItems/MyItems";
+import Blogs from "./Components/Pages/Blogs/Blogs";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           }
         />
         <Route path="/products" element={<Products/>} />
+        <Route path="/blogs" element={<Blogs/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/manage-inventories" element={

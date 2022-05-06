@@ -6,8 +6,18 @@ import { useNavigate } from 'react-router-dom';
 import auth from '../../../firebaseinit';
 import PageTitle from '../../../Hooks/PageTitle';
 import SingleProduct from '../SingleProduct/SingleProduct';
+import DelModal from '../../Modal/DelModal';
+import { toast } from 'react-toastify';
 
 const MyItems = () => {
+   // Handle Modal
+   const [show, setShow] = useState(false);
+   const [del, setDel] = useState(false);
+   const [pid, setPid] = useState(false);
+   const [title, setTitle] = useState(false);
+   const handleClose = () => setShow(false);
+   const handleShow = () => setShow(true);
+
   const nagivate = useNavigate();
   const [user] = useAuthState(auth);
   const [items, setItems] = useState([])
@@ -20,6 +30,32 @@ const MyItems = () => {
   const productDetails = (id) => {
     nagivate(`/inventory/${id}`)
   }
+
+  // Delete Handle 
+  const handleDelete = (id, title) => {
+    handleShow();
+    setPid(id);
+    setTitle(title)
+  }
+
+  useEffect(() => {
+    if(del) {
+      handleClose();
+      setDel(false);
+      fetch(`http://localhost:4000/delete/${pid}`, {
+      method: 'DELETE',
+    })
+    .then(res => res.json())
+    .then(result => {
+      if(result.acknowledged) {
+        toast('Product Successfully Deleted!');
+        const remainProducts = items.filter(item => item._id !== pid);
+        setItems(remainProducts)
+      }
+    })
+    }
+  },[del]);
+
   return (
 //     <section className='services_area pb-5'>
 
@@ -56,22 +92,20 @@ const MyItems = () => {
                   {
 items.length === 0 ? <h3 className='text-center text-info mt-5'>You don't added any items</h3> : items.map(product => 
                         
-                                <div className="cart-all-pro">
+                                <div key={product._id} className="cart-all-pro">
                                     <div className="cart-pro">
                                         <div className="cart-pro-image">
-                                            <img src={product.img} className="img-fluid" alt="image"/>
+                                            <img src={product.img} className="img-fluid" alt={product.name}/>
                                         </div>
                                         <div className="pro-details">
                                             <h4>{product.name}</h4>
-                                            <span className="pro-size"><span className="size">Size:</span> 5kg</span>
-                                            <span className="pro-shop">Petro-demo</span>
-                                            <span className="cart-pro-price">$384.51 CAD</span>
+                                            <span className="pro-size"><span className="size">In stock:</span> {product.stock}</span>
+                                            <span className="pro-size"><span className="size">Supplier:</span> {product.supplier}</span>
                                         </div>
                                     </div>
                                     <div className="qty-item">
                                         <div className="center">
-                                            
-                                            <a href="" className="pro-remove">Remove</a>
+                                            <button onClick={()=>handleDelete(product._id, product.name)} className='btn btn-sm btn-danger'>Delete</button>
                                         </div>
                                     </div>
                                     <div className="all-pro-price">
@@ -85,6 +119,8 @@ items.length === 0 ? <h3 className='text-center text-info mt-5'>You don't added 
                     
                 </div>
             </div>
+
+<DelModal show={show} setDel={setDel} title={title} handleClose={handleClose} />
         </section>
 
   );

@@ -7,8 +7,10 @@ import { useAuthState, useCreateUserWithEmailAndPassword, useSendEmailVerificati
 import GoogleSignin from "../../../Hooks/GoogleSignin";
 import PageTitle from "../../../Hooks/PageTitle";
 import { async } from "@firebase/util";
+import { toast } from "react-toastify";
 
 const Register = () => {
+  let errorElement;
   const [errorMessage, setError] = useState('')
   const [userLogin, loadingLogin, errorLogin] = useAuthState(auth);
   const [
@@ -84,11 +86,11 @@ const Register = () => {
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: userName });
     if(user) {
-      setError('Register Successfully, Login now.');
-    } else (
-      setError(error?.message)
-    )
-
+      toast('Register Successfully, Login now.');
+    } 
+  }
+  if(error) {
+    errorElement = <p className="error_message d-block mt-3">{error?.message}</p>
   }
   return (
     <section className="section-tb-padding">
@@ -110,6 +112,7 @@ const Register = () => {
                  {
                    errorMessage ? <p className="error_message">{errorMessage}</p> : ''
                  }
+                 {errorElement}
                   <button className="btn-style1">
                   {loading ?   <Spinner animation="border" variant="light"/>: 'Create account'}
                     </button>

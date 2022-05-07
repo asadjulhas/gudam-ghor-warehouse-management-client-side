@@ -6,10 +6,11 @@ import "./Login.css";
 import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import GoogleSignin from "../../../Hooks/GoogleSignin";
 import PageTitle from "../../../Hooks/PageTitle";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const emailRef = useRef();
-  const [errorMessage, setError] = useState('')
+  let errorElement;
   const [userLogin, loadingLogin, errorLogin] = useAuthState(auth);
   const [
     signInWithEmailAndPassword,
@@ -43,26 +44,24 @@ const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     signInWithEmailAndPassword(email, password)
-    setError('');
-    setError(error?.message);
   }
 // Reset password
 const handleResetPass = (e) => {
-  setError('');
   e.preventDefault();
   const email = emailRef.current.value;
   if(!email) {
-    setError('Please provide a valid email');
+    toast('Please provide a valid email');
     return;
   }
   sendPasswordResetEmail(email);
-  setError(errorReset?.message);
+}
+if(error || errorReset) {
+ errorElement = <p className="error_message d-block mt-3">{error?.message} {errorReset?.message}</p>
 }
   return (
     <section className="section-tb-padding">
-    {/* <PageTitle title='Login' /> */}
+    <PageTitle title='Login' />
 
-    <PageTitle title='Orders'/>
       <div className="container">
         <div className="row">
           <div className="col">
@@ -73,9 +72,7 @@ const handleResetPass = (e) => {
                 <form onSubmit={hadleLoginForm}>
                   <input required ref={emailRef} type="email" name="email" placeholder="Email" />
                   <input required type="password" name="password" placeholder="Password" />
-                  {
-                   errorMessage ? <p className="error_message d-block mt-3">{errorMessage}</p> : ''
-                 }
+                  {errorElement}
                   <button className="btn-style1">
                     {loading ? <Spinner animation="border" variant="light"/> : 'Sign in'}
                     </button>

@@ -18,3 +18,11 @@
 .mx-auto.navbar-nav {
 	align-items: center;
 }
+/* Medium Layout: 1280px. */
+
+@media only screen and (min-width: 992px) and (max-width: 1280px) { 
+  .mx-auto.navbar-nav a {
+    padding: 0px 15px;
+    font-size: 14px;
+  }
+}

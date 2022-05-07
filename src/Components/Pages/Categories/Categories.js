@@ -19,7 +19,7 @@ const Categories = () => {
         <div className="category-collection">
           <div className="swiper-wrapper">
             <div className="row">
-              <div className="col-lg-2 col-md-3 col-sm-6">
+              <div className="col-lg-2 col-md-3 col-sm-4">
                 <div className="swiper-slide swiper-slide-active">
                   <div className="cat-item">
                     <span className="cat-img">
@@ -35,7 +35,7 @@ const Categories = () => {
                 </div>
               </div>
 
-              <div className="col-lg-2 col-md-3 col-sm-6">
+              <div className="col-lg-2 col-md-3 col-sm-4">
                 <div className="swiper-slide swiper-slide-active">
                   <div className="cat-item">
                     <span className="cat-img">
@@ -51,7 +51,7 @@ const Categories = () => {
                 </div>
               </div>
 
-              <div className="col-lg-2 col-md-3 col-sm-6">
+              <div className="col-lg-2 col-md-3 col-sm-4">
                 <div className="swiper-slide swiper-slide-active">
                   <div className="cat-item">
                     <span className="cat-img">
@@ -67,7 +67,7 @@ const Categories = () => {
                 </div>
               </div>
 
-              <div className="col-lg-2 col-md-3 col-sm-6">
+              <div className="col-lg-2 col-md-3 col-sm-4">
                 <div className="swiper-slide swiper-slide-active">
                   <div className="cat-item">
                     <span className="cat-img">
@@ -83,7 +83,7 @@ const Categories = () => {
                 </div>
               </div>
 
-              <div className="col-lg-2 col-md-3 col-sm-6">
+              <div className="col-lg-2 col-md-3 col-sm-4">
                 <div className="swiper-slide swiper-slide-active">
                   <div className="cat-item">
                     <span className="cat-img">
@@ -99,7 +99,7 @@ const Categories = () => {
                 </div>
               </div>
 
-              <div className="col-lg-2 col-md-3 col-sm-6">
+              <div className="col-lg-2 col-md-3 col-sm-4">
                 <div className="swiper-slide swiper-slide-active">
                   <div className="cat-item">
                     <span className="cat-img">

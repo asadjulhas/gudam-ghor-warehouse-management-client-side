@@ -44,3 +44,10 @@ fnf-area{
   background-color: transparent;
   color: #000;
 }
+/* Mobile Layout: 320px. */
+@media only screen and (max-width: 767px) { 
+  .fnf-area h1.fnf-title {
+    font-size: 100px;
+  }
+
+}

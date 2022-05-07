@@ -22,3 +22,16 @@
 .table-bordered > :not(caption) > * {
 	border-width: 2px 0 !important;
 }
+/* Mobile Layout: 320px. */
+@media only screen and (max-width: 767px) { 
+  .single_Blog h2 {
+    font-size: 12px;
+  }
+  .table > :not(caption) > * > * {
+    font-size: 12px;
+  }
+  .single_Blog {
+    margin-bottom: 0px;
+  }
+
+}

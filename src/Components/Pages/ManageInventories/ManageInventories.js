@@ -118,7 +118,7 @@ const ManageInventories = () => {
       <Table responsive striped bordered hover size="sm">
   <thead>
      <tr>
-      <th>#</th>
+      <th className='index'>#</th>
       <th>Name</th>
       <th>Supplier</th>
       <th>Stock</th>
@@ -128,7 +128,7 @@ const ManageInventories = () => {
   </thead>
   <tbody>
   { product.map((item, index) => <tr key={item._id}>
-      <td>{index+1}</td>
+      <td className='index'>{index+1}</td>
       <td>{item?.name}</td>
       <td>{item?.supplier}</td>
       <td>{item?.stock}</td>

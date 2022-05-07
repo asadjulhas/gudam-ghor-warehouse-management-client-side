@@ -145,3 +145,13 @@
 .form-group {
 	margin-bottom: 15px;
 }
+/* Mobile Layout: 320px. */
+@media only screen and (max-width: 767px) { 
+  .single_widget > h3 {
+    font-size: 14px;
+  }
+  .contactus_area > h3 {
+    font-size: 14px;
+  }
+
+}

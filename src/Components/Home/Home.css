@@ -201,3 +201,61 @@
 .carousel-control-prev {
   margin-left: 2%;
 }
+
+/* Mobile Layout: 320px. */
+@media only screen and (max-width: 767px) { 
+  .homePage .carousel-caption {
+    bottom: 21%;
+    left: 22%;
+  }
+  .homePage .carousel-caption h3 {
+    font-size: 18px;
+  }
+  .carousel-control-next, .carousel-control-prev {
+    background: red;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-top: 22%;
+  }
+  .organic-food-fresh-banner {
+    flex-direction: column;
+    margin-left: 0;
+  }
+  .organic-food-fresh-banner .offer-banner {
+    width: 98%;
+    margin-left: 0px;
+    margin-bottom: 30px;
+  }
+  .organic-food-fresh-banner .offer-banner .banner-content h2 {
+    color: #222;
+  }
+  .category-area .category-collection .cat-item .cat-title {
+    width: 90%;
+  }
+  .category-area .category-collection .cat-item .cat-title {
+    width: 100%;
+  }
+  .footer_menu ul {
+    padding: 0;
+  }
+  .footer_menu ul li a {
+    padding: 20px 0px 0 20px;
+  }
+  .footer_bottom {
+    margin-top: 0px;
+    padding-top: 30px;
+  }
+  .section-tb-padding {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .homePage.mt-5 {
+    margin-top: 30px !important;
+  }
+  .section-tb-padding {
+    padding-top: 32px;
+    padding-bottom: 20px;
+  }
+
+}

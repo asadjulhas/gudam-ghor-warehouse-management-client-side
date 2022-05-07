@@ -226,3 +226,21 @@ pro-page .pro-image{
 .stockincreasebutton {
 	display: flex;
 }
+
+/* Mobile Layout: 320px. */
+@media only screen and (max-width: 767px) { 
+  .pro-page .pro-image .pro-info .pro-price {
+    display: block;
+  }
+  .pro-page .pro-image .pro-info .pro-price {
+    display: block;
+  }
+  .pro-page {
+    text-align: center;
+  }
+  .pro-page .pro-image .pro-info .pro-qty {
+    display: inline-flex;
+  }
+
+
+}

@@ -144,3 +144,50 @@
 	width: 1.0rem;
 	height: 1.0rem;
 }
+/* Medium Layout: 1280px. */
+
+@media only screen and (min-width: 992px) and (max-width: 1280px) { 
+  .register-area {
+    max-width: 80%;
+  }
+}
+/* Tablet Layout: 768px. */
+@media only screen and (min-width: 767px) and (max-width: 991px) {
+  .register-area {
+    max-width: 95%;
+    flex-direction: column;
+    margin-bottom: 0px;
+  } 
+  .register-area .register-box {
+    width: 100%;
+  }
+  .register-area .register-account {
+    width: calc(95% - 30px);
+    margin-left: 0;
+  }
+}
+
+
+/* Mobile Layout: 320px. */
+@media only screen and (max-width: 767px) { 
+  .register-area {
+    max-width: 95%;
+    flex-direction: column;
+    margin-bottom: 0px;
+  } 
+  .register-area .register-box {
+    width: 100%;
+  }
+  .register-area .register-account {
+    width: calc(95% - 30px);
+    margin-left: 0;
+  }
+  .register-area .register-box p {
+    font-size: 13px;
+  }
+  .register-area .register-box h1 {
+    font-size: 20px;
+  }
+
+}
+

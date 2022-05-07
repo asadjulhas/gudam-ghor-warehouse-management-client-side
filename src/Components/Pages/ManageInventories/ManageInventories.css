@@ -10,3 +10,30 @@
 .active .page-link {
 	background: #FF5400;
 }
+/* Mobile Layout: 320px. */
+@media only screen and (max-width: 767px) { 
+  
+  .manage_inventory_page table td, .manage_inventory_page table th {
+    font-size: 11px;
+  }
+  .index {
+    display: none;
+  }
+  .cart-area .cart-details .cart-all-pro .cart-pro .pro-details span.pro-size {
+    font-size: 12px;
+  }
+  .cart-area .cart-details .cart-all-pro .cart-pro .pro-details h4 {
+    font-size: 12px;
+  }
+  .cart-area .cart-details .cart-all-pro .all-pro-price {
+    font-size: 12px;
+  }
+  .cart-area .cart-details .cart-all-pro .cart-pro .pro-details h4 {
+    font-size: 12px;
+  }
+  .all-pro-price {
+    display: none;
+  }
+
+
+}

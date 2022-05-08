@@ -10,15 +10,75 @@ import DelModal from '../../Modal/DelModal';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebaseinit';
 import axios from 'axios';
+import UpdateStock from '../../Modal/UpdateStock';
 
 const ManageInventories = () => {
+  const[name, setName] = useState('')
+  const[stock, setStock] = useState('')
   const [user] = useAuthState(auth);
   const [product, setProduct] = useState([])
 
   // Form alert
   const [formAlert, setFormAlert] = useState('');
 
-  // Handle Modal
+  // Modal for  Update stock
+  const [showStock, setShowStock] = useState(false);
+  const handleCloseStock = () => setShowStock(false);
+  const handleShowStock = () => setShowStock(true);
+
+  // handleUpdateStock
+  const handleUpdateStock = (id, name, stock) => {
+    handleShowStock();
+    setPid(id);
+    setName(name)
+    setStock(stock)
+  }
+
+  // Update Stock
+  const handleIncreaseStock = (e) => {
+    e.preventDefault();
+    const increaseStock = e.target.name.value;
+    const currentStock = parseInt(stock) + parseInt(increaseStock);
+    const data= {currentStock}
+    fetch(`https://stormy-gorge-17032.herokuapp.com/update/${pid}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(result => {
+      if(result.result.acknowledged) {
+        handleCloseStock();
+        toast(`${increaseStock} products added in stock`)
+      }
+    }
+    )
+  }
+
+  // Deliver stock
+  const handleStock = () => {
+    const currentStock = stock - 1;
+  const data= {currentStock}
+    fetch(`https://stormy-gorge-17032.herokuapp.com/update/${pid}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(result => {
+      if(result.result.acknowledged) {
+        handleCloseStock();
+        toast('One item Delivered')
+      }
+    }
+    )
+  }
+
+  // Handle Modal Delete
   const [show, setShow] = useState(false);
   const [del, setDel] = useState(false);
   const [pid, setPid] = useState(false);
@@ -133,7 +193,7 @@ const ManageInventories = () => {
       <td>{item?.supplier}</td>
       <td>{item?.stock}</td>
       <td>${item?.price  }</td>
-      <td><FontAwesomeIcon title='Delete' onClick={()=>handleDelete(item?._id, item?.name)} className='text-danger del_button' icon={faTrash} /></td>
+      <td><Button onClick={()=>handleUpdateStock(item?._id, item?.name, item?.stock)} className='btn-sm' variant='primary'>Update Stock</Button> &nbsp; <FontAwesomeIcon title='Delete' onClick={()=>handleDelete(item?._id, item?.name)} className='text-danger del_button' icon={faTrash} /></td>
     </tr>)  }
 
   </tbody>
@@ -153,6 +213,8 @@ const ManageInventories = () => {
 </nav>
 </div>
       </div>
+
+      <UpdateStock showStock={showStock} handleCloseStock={handleCloseStock} handleShowStock={handleShowStock} handleIncreaseStock={handleIncreaseStock} name={name} stock={stock} handleStock={handleStock}/>
       
       <Modal
         show={fshow}

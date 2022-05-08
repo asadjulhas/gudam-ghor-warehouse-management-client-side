@@ -161,8 +161,6 @@ const ManageInventories = () => {
       e.target.reset();
       handleCloseF();
     })
-
-    // console.log(data)
   }
 
   return (

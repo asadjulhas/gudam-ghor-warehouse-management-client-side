@@ -9,6 +9,7 @@ import SingleProduct from '../SingleProduct/SingleProduct';
 import DelModal from '../../Modal/DelModal';
 import { toast } from 'react-toastify';
 import { signOut } from 'firebase/auth';
+import { Button, Form, Modal } from 'react-bootstrap';
 
 const MyItems = () => {
   const toLogin = useNavigate();
@@ -19,6 +20,9 @@ const MyItems = () => {
    const [title, setTitle] = useState(false);
    const handleClose = () => setShow(false);
    const handleShow = () => setShow(true);
+
+  // Form alert
+  const [formAlert, setFormAlert] = useState('');
 
   const nagivate = useNavigate();
   const [user] = useAuthState(auth);
@@ -43,9 +47,42 @@ if(error.response.status === 401 || error.response.status === 403) {
 
 }
 getOrders();
-  },[])
+  },[items])
   const productDetails = (id) => {
     nagivate(`/inventory/${id}`)
+  }
+
+    // Modal controllar for add product
+    const [fshow, setFshow] = useState(false);
+    const handleCloseF = () => setFshow(false);
+    const handleShowF = () => setFshow(true);
+
+  // Add product function
+  const handleAddproduct = (e) => {
+    e.preventDefault();
+    const name = e.target.pname.value;
+    if(!name) {
+      setFormAlert('Please added product name')
+      return;
+    } else {
+      setFormAlert('')
+    }
+    const supplier = e.target.supplier.value;
+    const stock = e.target.stock.value;
+    const img = e.target.image.value;
+    const price = e.target.price.value;
+    const description = e.target.description.value;
+    const email = user?.email;
+    const data = {name, supplier, stock, img, price, description, email}
+
+    axios.post('https://stormy-gorge-17032.herokuapp.com/add-product', data)
+    .then(res => {
+      if(res.data.acknowledged) {
+        toast(`Products successfully added.`)
+      };
+      e.target.reset();
+      handleCloseF();
+    })
   }
 
   // Delete Handle 
@@ -85,6 +122,9 @@ getOrders();
                             <div className="cart-details">
                                 <div className="cart-item">
                                     <span className="cart-head">My items</span>
+                                    <span><Button className='btn-sm btn-style1' variant="primary" onClick={handleShowF}>
+        Add a product
+      </Button></span>
                                     <span className="c-items">{items.length} item</span>
                                 </div>
                   {
@@ -117,6 +157,61 @@ items.length === 0 ? <h3 className='text-center text-info mt-5'>You don't added 
                     
                 </div>
             </div>
+
+            <Modal
+        show={fshow}
+        onHide={handleCloseF}
+        backdrop="static"
+        keyboard={false}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Add Product</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <Form onSubmit={handleAddproduct}>
+
+  <Form.Group className="mb-3" controlId="formBasicPassword">
+    <Form.Control required name='pname' type="text" placeholder="Product Name" />
+  </Form.Group>
+
+  <Form.Group className="mb-3" controlId="formBasicPassword">
+    <Form.Control required name='supplier' type="text" placeholder="Supplier Name" />
+  </Form.Group>
+
+  <Form.Group className="mb-3" controlId="formBasicPassword">
+    <Form.Control required name='stock' type="number" placeholder="In Stock" />
+  </Form.Group>
+
+  <Form.Group className="mb-3" controlId="formBasicPassword">
+    <Form.Control required name='price' type="number" placeholder="Price" />
+  </Form.Group>
+
+  <Form.Group className="mb-3" controlId="formBasicPassword">
+    <Form.Control required name='image' type="text" placeholder="Product image url" />
+  </Form.Group>
+
+  <Form.Group className="mb-3" controlId="formBasicPassword">
+    <Form.Control required name='description'
+      as="textarea"
+      placeholder="Product description"
+      style={{ height: '100px' }}
+    />
+  </Form.Group>
+  
+  <p className='text-danger'>{formAlert}</p>
+  <Button className='btn-style2' variant="primary" type="submit">
+    Add product
+  </Button>
+</Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseF}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
 
 <DelModal show={show} setDel={setDel} title={title} handleClose={handleClose} />
         </section>

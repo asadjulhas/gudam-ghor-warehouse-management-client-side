@@ -8,8 +8,10 @@ import PageTitle from '../../../Hooks/PageTitle';
 import SingleProduct from '../SingleProduct/SingleProduct';
 import DelModal from '../../Modal/DelModal';
 import { toast } from 'react-toastify';
+import { signOut } from 'firebase/auth';
 
 const MyItems = () => {
+  const toLogin = useNavigate();
    // Handle Modal
    const [show, setShow] = useState(false);
    const [del, setDel] = useState(false);
@@ -22,10 +24,25 @@ const MyItems = () => {
   const [user] = useAuthState(auth);
   const [items, setItems] = useState([])
   useEffect(() => {
-    axios.get(`https://stormy-gorge-17032.herokuapp.com/my-item?email=${user?.email}`)
-  .then(item => {
-    setItems(item.data)
-  })
+    const getOrders = async () => {
+  try {
+    const {data} = await axios.get(`http://localhost:4000/my-item?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
+    setItems(data);
+  } catch (error) {
+if(error.response.status === 401 || error.response.status === 403) {
+  localStorage.removeItem('accessToken')
+  toast('Sorry, you dont have access');
+  signOut(auth);
+  toLogin('/login')
+}
+  }
+
+}
+getOrders();
   },[])
   const productDetails = (id) => {
     nagivate(`/inventory/${id}`)
@@ -57,25 +74,6 @@ const MyItems = () => {
   },[del]);
 
   return (
-//     <section className='services_area pb-5'>
-
-// <PageTitle title='My items'/>
-//        <div className="container">
-//        <div className="section_title text-center pt-4 pb-4">
-//          <h2>My items</h2>
-//        </div>
-
-//       <div className="row">
-
-// {
-//  items.length === 0 ? <h3 className='text-center text-info'>You don't added any items</h3> : items.map(product => <SingleProduct productDetails={productDetails} product={product} key={product._id} />)
-// }
-
-//       </div>
-//       <div className="manage text-center">
-//       </div>
-//        </div>
-//     </section>
 
 <section className="cart-page section-tb-padding">
 <PageTitle title='My items'/>

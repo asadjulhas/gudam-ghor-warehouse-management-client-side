@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebaseinit";
@@ -7,6 +7,8 @@ import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword 
 import GoogleSignin from "../../../Hooks/GoogleSignin";
 import PageTitle from "../../../Hooks/PageTitle";
 import { toast } from "react-toastify";
+import axios from "axios";
+import useToken from "../../../Hooks/useToken";
 
 const Login = () => {
   const emailRef = useRef();
@@ -18,6 +20,8 @@ const Login = () => {
     loading,
     error,
   ] = useSignInWithEmailAndPassword(auth);
+
+  const [token] = useToken(userLogin);
   const [sendPasswordResetEmail, sending, errorReset] = useSendPasswordResetEmail(
     auth
   );
@@ -34,16 +38,19 @@ const Login = () => {
     )
   }
 
-  if(userLogin) {
+  
+
+  if(token) {
     navigate(from, { replace: true });
   }
 
   // Login form
-  const hadleLoginForm = (e) => {
+  const hadleLoginForm = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    signInWithEmailAndPassword(email, password)
+    await signInWithEmailAndPassword(email, password);
+
   }
 // Reset password
 const handleResetPass = (e) => {

@@ -8,6 +8,7 @@ import GoogleSignin from "../../../Hooks/GoogleSignin";
 import PageTitle from "../../../Hooks/PageTitle";
 import { async } from "@firebase/util";
 import { toast } from "react-toastify";
+import useToken from "../../../Hooks/useToken";
 
 const Register = () => {
   let errorElement;
@@ -20,6 +21,7 @@ const Register = () => {
     error,
   ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification:  true});
 
+  const [token] = useToken(userLogin);
   const [updateProfile, updating, error2] = useUpdateProfile(auth);
 
   let navigate = useNavigate();
@@ -35,7 +37,7 @@ const Register = () => {
     )
   }
 
-  if(userLogin) {
+  if(token) {
     navigate(from, { replace: true });
   }
 

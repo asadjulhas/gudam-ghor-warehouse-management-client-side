@@ -26,7 +26,7 @@ const MyItems = () => {
   useEffect(() => {
     const getOrders = async () => {
   try {
-    const {data} = await axios.get(`http://localhost:4000/my-item?email=${user?.email}`, {
+    const {data} = await axios.get(`https://stormy-gorge-17032.herokuapp.com/my-item?email=${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
       }

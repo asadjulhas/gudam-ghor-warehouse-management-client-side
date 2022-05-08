@@ -5,11 +5,11 @@ const useToken = (userLogin) => {
   const [token, setToken] = useState('')
   useEffect(()=>{
     const getToken = async () => {
-      const email = userLogin?.email
+      const email = userLogin?.email;
     if(email) {
-      const {data} = await axios.post('http://localhost:4000/login', {email});
+      const {data} = await axios.post('https://stormy-gorge-17032.herokuapp.com/login', {email});
       localStorage.setItem('accessToken', data.accessToken)
-      setToken(data)
+      setToken(data.accessToken)
      }
     }
     getToken();

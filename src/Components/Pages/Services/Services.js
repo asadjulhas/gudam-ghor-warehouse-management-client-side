@@ -28,7 +28,7 @@ const Services = () => {
       <div className="row">
 
 {
-  products.slice(0, 6).map(product => <SingleProduct productDetails={productDetails} product={product} key={product._id} />)
+  products.slice(0, 8).map(product => <SingleProduct productDetails={productDetails} product={product} key={product._id} />)
 }
 
       </div>

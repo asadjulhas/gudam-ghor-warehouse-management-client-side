@@ -31,7 +31,7 @@ function App() {
           }
         />
         <Route path="/products" element={<Products/>} />
-        <Route path="/blogs" element={<Blogs/>} />
+        {/* <Route path="/blogs" element={<Blogs/>} /> */}
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/manage-inventories" element={
